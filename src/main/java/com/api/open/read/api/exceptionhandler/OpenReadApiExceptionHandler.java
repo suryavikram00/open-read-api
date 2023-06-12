@@ -16,17 +16,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 
-import com.api.open.read.api.exception.CrudApiException;
+import com.api.open.read.api.exception.OpenReadApiException;
 import com.api.open.read.api.model.CrudApiResponse;
 import com.api.open.read.api.model.CrudApiResponseValidationError;
 import lombok.extern.slf4j.Slf4j;
 
 @ControllerAdvice
 @Slf4j
-public class CrudApiExceptionHandler {
+public class OpenReadApiExceptionHandler {
 
-    @ExceptionHandler(value = CrudApiException.class)
-    public ResponseEntity<CrudApiResponse<String>> magnumExceptionHandler(CrudApiException exception, WebRequest request) {
+    @ExceptionHandler(value = OpenReadApiException.class)
+    public ResponseEntity<CrudApiResponse<String>> magnumExceptionHandler(OpenReadApiException exception, WebRequest request) {
         String message = "Crud Runtime Exception :: " + exception.getLocalizedMessage();
         return buildResponseEntity(new CrudApiResponse<String>(StatusEnum.FAILURE).addMessage(message).addDebugMessage(exception));
     }
