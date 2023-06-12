@@ -1,0 +1,14 @@
+com\api\open\read\api\resources\JavaEE8Resource.class
+com\api\open\read\api\generic\model\CrudApiResponseError.class
+com\api\open\read\api\generic\model\CrudApiResponse.class
+com\api\open\read\api\generic\exceptionhandler\CrudApiExceptionHandler.class
+com\api\open\read\api\generic\filter\RequestResponseLoggingFilter.class
+com\api\open\read\api\generic\model\CrudApiResponseValidationError.class
+com\api\open\read\api\generic\entity\BaseEntity.class
+com\api\open\read\api\generic\enums\StatusEnum.class
+com\api\open\read\api\constants\Endpoints.class
+com\api\open\read\api\generic\repository\GenericRepository.class
+com\api\open\read\api\JAXRSConfiguration.class
+com\api\open\read\api\generic\exception\CrudApiException.class
+com\api\open\read\api\generic\service\utils\GenericUtility.class
+com\api\open\read\api\generic\entity\SimplePage.class
