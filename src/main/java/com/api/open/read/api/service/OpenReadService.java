@@ -26,7 +26,7 @@ import com.api.open.read.api.repository.OpenReadApiRepository;
 @Slf4j
 public class OpenReadService<T extends BaseEntity> implements IOpenReadService<T> {
 
-    @Autowired
+//    @Autowired
     protected OpenReadApiRepository<T> openReadRepository;
 
     @Override

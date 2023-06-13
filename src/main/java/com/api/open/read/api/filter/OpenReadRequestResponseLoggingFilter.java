@@ -23,7 +23,7 @@ import org.springframework.web.util.ContentCachingResponseWrapper;
  */
 @Slf4j
 @Component
-@Order(1)
+@Order(3)
 public class OpenReadRequestResponseLoggingFilter extends OncePerRequestFilter {
 
     @Override
@@ -50,13 +50,13 @@ public class OpenReadRequestResponseLoggingFilter extends OncePerRequestFilter {
                     request.getCharacterEncoding());
             String responseBody = getStringValue(responseWrapper.getContentAsByteArray(),
                     response.getCharacterEncoding());
-//            log.info(
-//                    "FINISHED PROCESSING : METHOD={}; REQUESTURI={}; REQUEST PAYLOAD={}; RESPONSE CODE={}; RESPONSE={}; TIM TAKEN={}",
-//                    request.getMethod(), request.getRequestURI(), requestBody, response.getStatus(), responseBody,
-//                    timeTaken);
-//            responseWrapper.copyBodyToResponse();
-//        } catch (IOException e) {
-//            log.info("IOException in doFilterInternal :: ", e);
+            log.info(
+                    "FINISHED PROCESSING : METHOD={}; REQUESTURI={}; REQUEST PAYLOAD={}; RESPONSE CODE={}; RESPONSE={}; TIM TAKEN={}",
+                    request.getMethod(), request.getRequestURI(), requestBody, response.getStatus(), responseBody,
+                    timeTaken);
+            responseWrapper.copyBodyToResponse();
+        } catch (IOException e) {
+            log.info("IOException in doFilterInternal :: ", e);
         } catch (Exception e) {
             log.info("Exception in doFilterInternal :: ", e);
         }
