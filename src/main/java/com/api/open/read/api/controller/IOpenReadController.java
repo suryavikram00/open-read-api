@@ -21,21 +21,21 @@ import org.springframework.web.bind.annotation.PathVariable;
  */
 public interface IOpenReadController<T extends BaseEntity> {
 
-    ResponseEntity<CrudApiResponse<T>> findAll();
+    public ResponseEntity<CrudApiResponse<T>> findAll();
 
     /**
      *
      * @param id
      * @return
      */
-    ResponseEntity<CrudApiResponse<T>> findById(@PathVariable Long id);
+    public ResponseEntity<CrudApiResponse<T>> findById(@PathVariable Long id);
 
-    ResponseEntity<CrudApiResponse<T>> findAllByPageable(
+    public ResponseEntity<CrudApiResponse<T>> findAllByPageable(
             Boolean isPaged,
             @SortDefault(sort = "priRole")
             @PageableDefault(size = 20) final Pageable pageable);
 
-    ResponseEntity<CrudApiResponse<T>> findByFilter(T t,
+    public ResponseEntity<CrudApiResponse<T>> findByFilter(T t,
             Boolean isPaged,
             @SortDefault(sort = "id") @PageableDefault(size = 10) Pageable pageable,
             Boolean matchingAny);

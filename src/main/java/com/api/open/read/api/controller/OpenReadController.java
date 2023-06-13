@@ -45,7 +45,7 @@ import com.api.open.read.api.service.IOpenReadService;
 @RequestMapping(path = ENDPOINT_OPEN_READ_PREFIX)
 public class OpenReadController<T extends BaseEntity> implements IOpenReadController<T> {
 
-//    @Autowired
+    @Autowired
     private IOpenReadService<T> openReadService;
 
     @Override
