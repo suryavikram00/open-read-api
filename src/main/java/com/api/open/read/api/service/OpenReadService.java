@@ -6,8 +6,6 @@ package com.api.open.read.api.service;
 
 import com.api.open.read.api.entity.BaseEntity;
 import com.api.open.read.api.entity.SimplePage;
-import com.api.open.read.api.entity.BaseEntity;
-import com.api.open.read.api.entity.SimplePage;
 import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
@@ -17,9 +15,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import com.api.open.read.api.repository.CrudApiRepository;
-import com.api.open.read.api.repository.CrudApiRepository;
+import com.api.open.read.api.repository.OpenReadApiRepository;
 
 /**
  *
@@ -31,11 +27,11 @@ import com.api.open.read.api.repository.CrudApiRepository;
 public class OpenReadService<T extends BaseEntity> implements IOpenReadService<T> {
 
     @Autowired
-    protected CrudApiRepository<T> genericRepository;
+    protected OpenReadApiRepository<T> openReadRepository;
 
     @Override
     public List<T> findAll() {
-        return genericRepository.findAll();
+        return openReadRepository.findAll();
     }
 
     @Override
@@ -48,7 +44,7 @@ public class OpenReadService<T extends BaseEntity> implements IOpenReadService<T
             matcher = ExampleMatcher.matchingAll();
         }
 
-        final Page<T> page = genericRepository.findAll(Example.of(t, matcher), pageable);
+        final Page<T> page = openReadRepository.findAll(Example.of(t, matcher), pageable);
         log.info(" Successfully fectched purchase order list of size :: {} ", page.getNumberOfElements());
         return new SimplePage<>(page.getContent(), page.getTotalElements(), pageable);
 
@@ -57,7 +53,7 @@ public class OpenReadService<T extends BaseEntity> implements IOpenReadService<T
     @Override
     public T findById(Long id) {
         try {
-            Optional<T> optional = genericRepository.findById(id);
+            Optional<T> optional = openReadRepository.findById(id);
             return optional.isPresent() ? optional.get() : null;
         } catch (Exception e) {
             throw e;
@@ -66,7 +62,7 @@ public class OpenReadService<T extends BaseEntity> implements IOpenReadService<T
 
     @Override
     public SimplePage<T> findAll(final Pageable pageable) {
-        final Page<T> page = genericRepository.findAll(pageable);
+        final Page<T> page = openReadRepository.findAll(pageable);
         return new SimplePage<>(page.getContent(), page.getTotalElements(), pageable);
     }
    

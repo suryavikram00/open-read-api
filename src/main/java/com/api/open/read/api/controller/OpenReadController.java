@@ -7,7 +7,7 @@ package com.api.open.read.api.controller;
 import com.api.open.read.api.enums.StatusEnum;
 import com.api.open.read.api.entity.BaseEntity;
 import com.api.open.read.api.entity.SimplePage;
-import com.api.open.read.api.utility.OpenReadUtility;
+import com.api.open.read.api.utility.OpenReadApiUtility;
 import com.api.open.read.api.model.CrudApiResponse;
 import java.io.PrintWriter;
 import java.lang.reflect.ParameterizedType;
@@ -35,6 +35,7 @@ import com.api.open.read.api.service.IOpenReadService;
 /**
  *
  * @author NMSLAP570
+ * @param <T>
  */
 @SuppressWarnings({"unchecked", "rawtypes"})
 @ResponseBody
@@ -45,12 +46,12 @@ import com.api.open.read.api.service.IOpenReadService;
 public class OpenReadController<T extends BaseEntity> implements IOpenReadController<T> {
 
     @Autowired
-    private IOpenReadService<T> genericService;
+    private IOpenReadService<T> openReadService;
 
     @Override
     @GetMapping
     public ResponseEntity<CrudApiResponse<T>> findAll() {
-        List<T> list = genericService.findAll();
+        List<T> list = openReadService.findAll();
         CrudApiResponse<T> crudApiResponse = new CrudApiResponse<>(StatusEnum.SUCCESS);
         crudApiResponse.setObjectList(list);
         return new ResponseEntity(crudApiResponse, HttpStatus.OK);
@@ -65,7 +66,7 @@ public class OpenReadController<T extends BaseEntity> implements IOpenReadContro
         if (isPaged == null || Boolean.FALSE.equals(isPaged)) {
             pageable = Pageable.unpaged();
         }
-        SimplePage<T> page = genericService.findAll(pageable);
+        SimplePage<T> page = openReadService.findAll(pageable);
         CrudApiResponse<T> crudApiResponse = new CrudApiResponse<>(StatusEnum.SUCCESS);
         crudApiResponse.setPageData(page);
         return new ResponseEntity(crudApiResponse, HttpStatus.OK);
@@ -82,9 +83,9 @@ public class OpenReadController<T extends BaseEntity> implements IOpenReadContro
             response.setContentType("text/csv");
             response.setHeader("Content-Disposition", "attachment; filename=\"" + genericType.getSimpleName() + ".csv\"");
             PrintWriter writer = response.getWriter();
-            writer.println(OpenReadUtility.getFieldNames(genericType));
+            writer.println(OpenReadApiUtility.getFieldNames(genericType));
             for (T eachObject : list) {
-                writer.println(OpenReadUtility.extractFieldValues(eachObject));
+                writer.println(OpenReadApiUtility.extractFieldValues(eachObject));
             }
         } catch (Exception e) {
             log.error("Exception in findAll method :: ", e);
@@ -96,7 +97,7 @@ public class OpenReadController<T extends BaseEntity> implements IOpenReadContro
     public ResponseEntity<CrudApiResponse<T>> findById(@PathVariable Long id) {
         try {
             CrudApiResponse<T> crudApiResponse = new CrudApiResponse<>(StatusEnum.SUCCESS);
-            crudApiResponse.setObject(genericService.findById(id));
+            crudApiResponse.setObject(openReadService.findById(id));
             return new ResponseEntity(crudApiResponse, HttpStatus.OK);
         } catch (Exception e) {
             log.error("Exception in findById method :: ", e);
@@ -115,7 +116,7 @@ public class OpenReadController<T extends BaseEntity> implements IOpenReadContro
             if (isPaged == null || Boolean.FALSE.equals(isPaged)) {
                 pageable = Pageable.unpaged();
             }
-            SimplePage<T> page = genericService.findByValue(t, pageable, matchingAny);
+            SimplePage<T> page = openReadService.findByValue(t, pageable, matchingAny);
             CrudApiResponse<T> crudApiResponse = new CrudApiResponse<>(StatusEnum.SUCCESS);
             crudApiResponse.setPageData(page);
             return new ResponseEntity(crudApiResponse, HttpStatus.OK);

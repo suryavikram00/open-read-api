@@ -11,10 +11,9 @@ package com.api.open.read.api.repository;
 import com.api.open.read.api.entity.BaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 
 @Component
-public interface CrudApiRepository<T extends BaseEntity> extends JpaRepository<T, Long> {
+public interface OpenReadApiRepository<T extends BaseEntity> extends JpaRepository<T, Long> {
 
 }

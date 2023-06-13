@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author NMSLAP570
  */
 @Slf4j
-public class OpenReadUtility {
+public class OpenReadApiUtility {
 
     public static <T> String getFieldNames(Class<T> clazz) {
         List<String> fieldNames = new ArrayList();
@@ -48,20 +48,6 @@ public class OpenReadUtility {
         }
         return String.join(",", fieldValues);
     }
-
-//    public static Class<?> getClassName(TableNameEnum tableNameEnum) {
-//        String className = tableNameEnum.getQualifiedClassName();
-//        Class<?> clazz = null;
-//        try {
-//            clazz = Class.forName(className);
-//            // Now you can use the 'clazz' object to access the class type
-//            log.info("Class type: " + clazz.getName());
-//        } catch (ClassNotFoundException e) {
-//            // Handle the exception if the class is not found
-//            throw new CrudApiException("Exception when trying to create class :: " + className);
-//        }
-//        return clazz;
-//    }
     
     public static ObjectMapper getObjectMapper() {
         ObjectMapper mapper = new ObjectMapper();

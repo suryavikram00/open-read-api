@@ -6,8 +6,6 @@ package com.api.open.read.api.service;
 
 import com.api.open.read.api.entity.BaseEntity;
 import com.api.open.read.api.entity.SimplePage;
-import com.api.open.read.api.entity.BaseEntity;
-import com.api.open.read.api.entity.SimplePage;
 import java.util.List;
 import org.springframework.data.domain.Pageable;
 
