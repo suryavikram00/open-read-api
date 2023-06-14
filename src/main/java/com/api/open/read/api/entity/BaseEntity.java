@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 import lombok.Getter;
 
 /**
@@ -16,7 +17,7 @@ import lombok.Getter;
  * @author NMSLAP570
  */
 @MappedSuperclass
-public class BaseEntity<T> implements Serializable {
+public abstract class BaseEntity<T> implements Serializable {
 
     private static final long serialVersionUID = 2L;
 
@@ -25,7 +26,29 @@ public class BaseEntity<T> implements Serializable {
     @Getter
     private T id;
 
+//    @Transient
+//    protected String tableName;
+//    @Transient
+////    protected String tableviewName;
+//    @Transient
+//    protected String tableApiName;
+//    @Transient
+//    protected Boolean serverPaginationEnabled;
+
     public BaseEntity() {
     }
+
+//    protected abstract String getTableName();
+
+//    protected abstract String getTableviewName();
+
+//    protected abstract String getTableApiName();
+
+//    protected abstract Boolean getServerPaginationEnabled();
+
+//    @Override
+//    public String toString() {
+//        return "BaseEntity{" + "tableName=" + tableName + ", tableviewName=" + tableviewName + ", tableApiName=" + tableApiName + ", serverPaginationEnabled=" + serverPaginationEnabled + '}';
+//    }
 
 }
