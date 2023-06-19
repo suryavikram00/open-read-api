@@ -43,7 +43,7 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency> 
-         <dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
@@ -102,4 +102,11 @@
             </plugin>
         </plugins>
     </build>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/suryavikram00/open-read-api</url>
+        </repository>
+    </distributionManagement>
 </project>

@@ -16,6 +16,5 @@ com\api\open\read\api\JAXRSConfiguration.class
 com\api\open\read\api\resources\JavaEE8Resource.class
 com\api\open\read\api\exception\OpenReadApiException.class
 com\api\open\read\api\model\CrudApiResponse.class
-.netbeans_automatic_build
 com\api\open\read\api\model\CrudApiResponseError.class
 com\api\open\read\api\constants\OpenReadEndPoints.class
